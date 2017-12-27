@@ -1,0 +1,47 @@
+﻿<LogWindowViewModel xmlns="clr-namespace:FileDispatcher.ViewModels">
+    <LogWindowViewModel.SelectedLog>
+        <DispatchedEventArgs xmlns="clr-namespace:FileDispatcher.Core" 
+                          TaskName="Copy nice" 
+                          DateTime="23 October 2017 00:00:00" 
+                          SourcePath="E:\Users\Downloads"
+                          TargetPath="E:\Users\Downloads\Other"
+                          ResultDescription="Success"
+                          />
+        <DispatchedEventArgs xmlns="clr-namespace:FileDispatcher.Core" 
+                          TaskName="Copy nice" 
+                          DateTime="23 October 2017 01:11:59" 
+                          SourcePath="E:\Users\Downloads"
+                          TargetPath="E:\Users\Downloads\Other"
+                          ResultDescription="Success"
+                          />
+        <DispatchedEventArgs xmlns="clr-namespace:FileDispatcher.Core" 
+                          TaskName="Copy nice" 
+                          DateTime="23 October 2017 23:59:59" 
+                          SourcePath="E:\Users\Downloads\Files"
+                          TargetPath="E:\Users\Downloads\Other"
+                          ResultDescription="Skipped"
+                          />
+        <DispatchedEventArgs xmlns="clr-namespace:FileDispatcher.Core" 
+                          TaskName="Copy nice" 
+                          DateTime="23 October 2017 00:00:00" 
+                          SourcePath="E:\Users\Downloads"
+                          TargetPath="E:\Users\Downloads\Other"
+                          ResultDescription="Success"
+                          />
+        <DispatchedEventArgs xmlns="clr-namespace:FileDispatcher.Core" 
+                          TaskName="Copy nice" 
+                          DateTime="23 October 2017 01:11:59" 
+                          SourcePath="E:\Users\Downloads"
+                          TargetPath="E:\Users\Downloads\Other"
+                          ResultDescription="Success"
+                          />
+        <DispatchedEventArgs xmlns="clr-namespace:FileDispatcher.Core" 
+                          TaskName="Copy nice" 
+                          DateTime="23 October 2017 23:59:59" 
+                          SourcePath="E:\Users\Downloads\Files"
+                          TargetPath="E:\Users\Downloads\Other"
+                          ResultDescription="Skipped"
+                          />
+    </LogWindowViewModel.SelectedLog>
+</LogWindowViewModel>
+   

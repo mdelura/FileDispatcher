@@ -1,0 +1,15 @@
+﻿<vm:PreferenceFiltersViewModel xmlns:vm="clr-namespace:FileDispatcher.Core.ViewModels" 
+                               xmlns:System="clr-namespace:System;assembly=mscorlib"
+                               >
+    <vm:PreferenceFiltersViewModel.Filters>
+        <System:String>*.txt</System:String>
+        <System:String>*.dat</System:String>
+        <System:String>*.log</System:String>
+    </vm:PreferenceFiltersViewModel.Filters>
+    <vm:PreferenceFiltersViewModel.ExclusionFilters>
+        <System:String>11.txt</System:String>
+        <System:String>error.*</System:String>
+        <System:String>1*.log</System:String>
+    </vm:PreferenceFiltersViewModel.ExclusionFilters>
+</vm:PreferenceFiltersViewModel>
+   

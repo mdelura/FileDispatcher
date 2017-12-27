@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:tb="http://www.hardcodet.net/taskbar"
+                    xmlns:vm="clr-namespace:FileDispatcher.ViewModels"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    mc:Ignorable="d"
+                    >
+    <ContextMenu 
+        x:Shared="false" 
+        x:Key="AppTrayMenu"
+        d:DataContext="{d:DesignInstance vm:AppTrayViewModel}"
+        >
+        <MenuItem 
+            Header="Show Log" 
+            Command="{Binding ShowLogCommand}"
+            />
+        <Separator />
+        <MenuItem 
+            Header="Configuration"
+            Command="{Binding ShowConfigurationCommand}"
+            />
+        <MenuItem 
+            Header="About" 
+            Command="{Binding ShowAboutCommand}" 
+            />
+        <Separator />
+        <MenuItem 
+            Header="Exit" 
+            Command="{Binding ExitCommand}" 
+            />
+    </ContextMenu>
+
+    <tb:TaskbarIcon
+        x:Key="TrayIcon"
+        IconSource="/Resources/Images/TrayIcon.ico"
+        DoubleClickCommand="{Binding ShowLogCommand}"
+        ContextMenu="{StaticResource AppTrayMenu}"
+        d:DataContext="{d:DesignInstance vm:AppTrayViewModel}"
+        >
+        <!--<tb:TaskbarIcon.DataContext>
+            <vm:AppTrayViewModel />
+        </tb:TaskbarIcon.DataContext>-->
+    </tb:TaskbarIcon>
+
+</ResourceDictionary>

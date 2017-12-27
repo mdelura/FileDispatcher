@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="FileDispatcher.Core.Views.PreferenceFiltersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:conv="clr-namespace:FileDispatcher.Views.Converters"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             MinWidth="130"
+             d:DesignWidth="200"
+             d:DataContext="{d:DesignData Source=./DesignData/PreferenceFilters.xaml}"
+             Validation.ErrorTemplate="{x:Null}"
+             >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/FileDispatcher;component/Resources/Themes/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <conv:ObservableStringsToStringConverter x:Key="strConv"/>
+            <Style TargetType="TextBox" BasedOn="{StaticResource ErrorToolTipStyle}">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="False">
+                        <Setter Property="ToolTip">
+                            <Setter.Value>
+                                <TextBlock>
+                                    Provide filesystem filters for items you want to include.<LineBreak/>
+                                    Separate filters with commas or semicolons.
+                                </TextBlock>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel>
+        <TextBlock Text="Include"/>
+        <TextBox Text="{Binding Path=Filters, Mode=TwoWay, Converter={StaticResource strConv}}"/>
+        <TextBlock Text="Exclude" Margin="0,4,0,0"/>
+        <TextBox Text="{Binding Path=ExclusionFilters, Mode=TwoWay, Converter={StaticResource strConv}}"/>
+    </StackPanel>
+</UserControl>

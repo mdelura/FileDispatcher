@@ -1,0 +1,15 @@
+﻿<Window x:Class="FileDispatcher.Views.TestingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileDispatcher.Views"
+        mc:Ignorable="d"
+        Title="TestingWindow" Height="300" Width="300">
+    <DockPanel>
+        <local:FolderPicker 
+            d:DataContext="{d:DesignData Source=/_DesignData/FolderPicker.xaml}"
+            />
+
+    </DockPanel>
+</Window>

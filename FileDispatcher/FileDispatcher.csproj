@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{61B257BB-6508-459E-8DE9-F37686E76D7D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>FileDispatcher</RootNamespace>
+    <AssemblyName>FileDispatcher</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Images\TrayIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonServiceLocator, Version=2.0.1.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.1\lib\net45\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="Gat.Controls.AboutBox, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AboutBox.2.0.0\lib\net451\Gat.Controls.AboutBox.dll</HintPath>
+    </Reference>
+    <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Hardcodet.NotifyIcon.Wpf.1.0.8\lib\net451\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Core.1.1.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Prism.Wpf, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\Prism.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Core\DispatchedEventArgs.cs" />
+    <Compile Include="Core\DispatchManager.cs" />
+    <Compile Include="Core\ExtensionMethods\SerializationExtensions.cs" />
+    <Compile Include="Core\ExtensionMethods\StringExtensions.cs" />
+    <Compile Include="Core\PreferenceFilters.cs" />
+    <Compile Include="Core\TargetRouter.cs" />
+    <Compile Include="Core\Tasks\CopyTask.cs" />
+    <Compile Include="Core\Tasks\DeleteTask.cs" />
+    <Compile Include="Core\Tasks\TargetableTaskBase.cs" />
+    <Compile Include="Core\Tasks\ExtractTask.cs" />
+    <Compile Include="Core\Tasks\MoveTask.cs" />
+    <Compile Include="Core\Tasks\TargetExistsBehaviour.cs" />
+    <Compile Include="Core\Tasks\TaskBase.cs" />
+    <Compile Include="Core\ReadyEventArgs.cs" />
+    <Compile Include="Core\Tasks\ViewModels\CopyTaskViewModel.cs" />
+    <Compile Include="Core\Tasks\ViewModels\DeleteTaskViewModel.cs" />
+    <Compile Include="Core\Tasks\ViewModels\ExtractTaskViewModel.cs" />
+    <Compile Include="Core\Tasks\ViewModels\ITaskViewModel.cs" />
+    <Compile Include="Core\Tasks\ViewModels\MoveTaskViewModel.cs" />
+    <Compile Include="Core\Tasks\ViewModels\TargetableTaskBaseViewModel.cs" />
+    <Compile Include="Core\Tasks\ViewModels\TaskBaseViewModel.cs" />
+    <Compile Include="Core\Tasks\Views\CopyTaskView.xaml.cs">
+      <DependentUpon>CopyTaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tasks\Views\DeleteTaskView.xaml.cs">
+      <DependentUpon>DeleteTaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tasks\Views\ExtractTaskView.xaml.cs">
+      <DependentUpon>ExtractTaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tasks\Views\MoveTaskView.xaml.cs">
+      <DependentUpon>MoveTaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tasks\Views\TargetableTaskBaseView.xaml.cs">
+      <DependentUpon>TargetableTaskBaseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Tasks\Views\TaskBaseView.xaml.cs">
+      <DependentUpon>TaskBaseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\ViewModels\TriggerViewModel.cs" />
+    <Compile Include="Core\Views\TargetRouterView.xaml.cs">
+      <DependentUpon>TargetRouterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Views\WatcherTriggerView.xaml.cs">
+      <DependentUpon>WatcherTriggerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\WatchedElements.cs" />
+    <Compile Include="Core\WatcherTrigger.cs" />
+    <Compile Include="Core\ITrigger.cs" />
+    <Compile Include="ViewModels\BindableDataErrorNotifierModelWrapperBase.cs" />
+    <Compile Include="ViewModels\BindableModelWrapperBase.cs" />
+    <Compile Include="ViewModels\ConfigWindowViewModel.cs" />
+    <Compile Include="ViewModels\CreateNewTaskWindowViewModel.cs" />
+    <Compile Include="ViewModels\IBindableModelWrapper.cs" />
+    <Compile Include="ViewModels\IRequiredFieldsInfo.cs" />
+    <Compile Include="Views\ConfigWindow.xaml.cs">
+      <DependentUpon>ConfigWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Converters\EnumDescriptionConverter.cs" />
+    <Compile Include="Views\Converters\FlagsEnumValueConverter.cs" />
+    <Compile Include="Views\Converters\ValidationErrorsToStringConverter.cs" />
+    <Compile Include="ViewModels\AppTrayViewModel.cs" />
+    <Compile Include="ViewModels\BindableDataErrorNotifierBase.cs" />
+    <Compile Include="ViewModels\FolderPickerViewModel.cs" />
+    <Compile Include="ViewModels\LogWindowViewModel.cs" />
+    <Compile Include="Core\ViewModels\PreferenceFiltersViewModel.cs" />
+    <Compile Include="Core\ViewModels\TargetRouterViewModel.cs" />
+    <Compile Include="Core\ViewModels\WatcherTriggerViewModel.cs" />
+    <Compile Include="Views\Converters\ObservableStringsToStringConverter.cs" />
+    <Compile Include="Views\CreateNewTaskWindow.xaml.cs">
+      <DependentUpon>CreateNewTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FolderPicker.xaml.cs">
+      <DependentUpon>FolderPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LogWindow.xaml.cs">
+      <DependentUpon>LogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Views\PreferenceFiltersView.xaml.cs">
+      <DependentUpon>PreferenceFiltersView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AppTrayResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <DesignData Include="Views\DesignData\FolderPickerViewModel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </DesignData>
+    <Page Include="Core\Tasks\Views\CopyTaskView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Core\Tasks\Views\DeleteTaskView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Core\Tasks\Views\ExtractTaskView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Core\Tasks\Views\MoveTaskView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Core\Tasks\Views\TargetableTaskBaseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Core\Tasks\Views\TaskBaseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Core\Views\TargetRouterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Core\Views\WatcherTriggerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Themes\DataTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Themes\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <DesignData Include="Core\Views\DesignData\PreferenceFilters.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </DesignData>
+    <Page Include="Views\ConfigWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <DesignData Include="Views\DesignData\ConfigWindowViewModel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </DesignData>
+    <Page Include="Views\CreateNewTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FolderPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <DesignData Include="Views\DesignData\LogWindowViewModel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </DesignData>
+    <Page Include="Core\Views\PreferenceFiltersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Resource Include="Resources\Images\folder.png" />
+    <Resource Include="Resources\Images\TrayIcon.ico" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="IWshRuntimeLibrary">
+      <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

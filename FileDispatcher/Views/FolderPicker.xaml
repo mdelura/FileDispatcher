@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="FileDispatcher.Views.FolderPicker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignData Source=./DesignData/FolderPickerViewModel.xaml}"
+             Validation.ErrorTemplate="{x:Null}"
+             >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/FileDispatcher;component/Resources/Themes/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="TextBox" BasedOn="{StaticResource ErrorToolTipStyle}">
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="False">
+                        <Setter 
+                            Property="ToolTip" 
+                            Value="{Binding Text, RelativeSource={RelativeSource Self}}"
+                            />
+                    </Trigger>
+                    <Trigger Property="Text" Value="">
+                        <Setter
+                            Property="ToolTip"
+                            Value="{Binding Prompt}"
+                            />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <TextBox
+            Name="pathTextBox"
+            Grid.Column="0"
+            Text="{Binding Path=Item, Mode=TwoWay}" 
+            Margin="0,0,4,0"
+            />
+        <Button 
+            Grid.Column="1"
+            Command="{Binding PickFolderDialogCommand}" 
+            Height="{Binding ActualHeight, ElementName=pathTextBox, Mode=OneWay}"
+            Width="{Binding ActualHeight, ElementName=pathTextBox, Mode=OneWay}"
+            >
+            <Image
+                Source="/FileDispatcher;component/Resources/Images/folder.png"
+                Margin="1"
+                Opacity="0.5"
+                ToolTip="{Binding Prompt}"
+                />
+        </Button>
+    </Grid>
+</UserControl>

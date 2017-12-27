@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:taskViews="clr-namespace:FileDispatcher.Core.Tasks.Views"
+                    xmlns:taskvm="clr-namespace:FileDispatcher.Core.Tasks.ViewModels"
+                    xmlns:local="clr-namespace:FileDispatcher.Resources.Themes">
+    <DataTemplate DataType="{x:Type taskvm:CopyTaskViewModel}">
+        <taskViews:CopyTaskView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type taskvm:DeleteTaskViewModel}">
+        <taskViews:DeleteTaskView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type taskvm:ExtractTaskViewModel}">
+        <taskViews:ExtractTaskView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type taskvm:MoveTaskViewModel}">
+        <taskViews:MoveTaskView />
+    </DataTemplate>
+</ResourceDictionary>

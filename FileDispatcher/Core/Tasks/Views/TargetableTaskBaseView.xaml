@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="FileDispatcher.Core.Tasks.Views.TargetableTaskBaseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:tasks="clr-namespace:FileDispatcher.Core.Tasks"
+             xmlns:local="clr-namespace:FileDispatcher.Core.Tasks.Views"
+             xmlns:coreViews="clr-namespace:FileDispatcher.Core.Views"
+             xmlns:conv="clr-namespace:FileDispatcher.Views.Converters"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d"
+             >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <conv:EnumDescriptionConverter x:Key="enumDescriptionConverter" />
+            <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="targetExistsEnum">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="tasks:TargetExistsBehaviour" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/FileDispatcher;component/Resources/Themes/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel>
+        <local:TaskBaseView/>
+        <GroupBox Header="Target">
+            <StackPanel>
+                <coreViews:TargetRouterView DataContext="{Binding Path=TargetRouterViewModel}" Margin="0,0,0,4"/>
+                <TextBlock Text="When target exists"/>
+                <ComboBox 
+                    ItemsSource="{Binding Source={StaticResource targetExistsEnum}}"
+                    SelectedValue="{Binding Path=TargetExistsBehaviour}"
+                    >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource enumDescriptionConverter}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+        </GroupBox>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,41 @@
+﻿<vm:ConfigWindowViewModel xmlns:vm="clr-namespace:FileDispatcher.ViewModels"
+                          xmlns:corevm="clr-namespace:FileDispatcher.Core.ViewModels"
+                          xmlns:taskvm="clr-namespace:FileDispatcher.Core.Tasks.ViewModels"
+                          >
+    <vm:ConfigWindowViewModel.Tasks>
+        <taskvm:CopyTaskViewModel 
+            Name="Copy icons" 
+            TaskType="CopyTask"
+            />
+        <taskvm:ExtractTaskViewModel
+            Name="Extract text"
+            TaskType="ExtractTask"
+            />
+        <taskvm:MoveTaskViewModel
+            Name="Move files" 
+            TaskType="MoveTask"
+            />
+    </vm:ConfigWindowViewModel.Tasks>
+    <vm:ConfigWindowViewModel.SelectedTask>
+        <taskvm:CopyTaskViewModel
+            CopySubdirectories="True"
+            Name="Copy icons"
+            TargetExistsBehaviour="Rename"
+            >
+            <taskvm:CopyTaskViewModel.TriggerViewModel>
+                <corevm:WatcherTriggerViewModel 
+                    Enabled="True"
+                    IncludeSubdirectories="True"
+                    WatchedElements="File"
+                    >
+                </corevm:WatcherTriggerViewModel>
+            </taskvm:CopyTaskViewModel.TriggerViewModel>
+            <taskvm:CopyTaskViewModel.TargetRouterViewModel>
+                <corevm:TargetRouterViewModel 
+                    MatchSubdirectory="HighMatchOnly"
+                    MatchToSimilarFile="Never"
+                    />
+            </taskvm:CopyTaskViewModel.TargetRouterViewModel>
+        </taskvm:CopyTaskViewModel>
+    </vm:ConfigWindowViewModel.SelectedTask>
+</vm:ConfigWindowViewModel>

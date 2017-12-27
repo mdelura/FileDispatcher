@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:System="clr-namespace:System;assembly=mscorlib"
+                    xmlns:conv="clr-namespace:FileDispatcher.Views.Converters"
+                    >
+    <conv:ValidationErrorsToStringConverter x:Key="validationErrorsToStringConverter"/>
+    <Style x:Key="ErrorToolTipStyle" TargetType="Control">
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="true">
+                <Setter Property="BorderBrush" Value="Red" />
+                <Setter Property="ToolTip">
+                    <Setter.Value>
+                        <MultiBinding Converter="{StaticResource validationErrorsToStringConverter}">
+                            <Binding RelativeSource="{RelativeSource Self}" Path="(Validation.Errors)" />
+                            <Binding RelativeSource="{RelativeSource Self}" Path="(Validation.Errors).Count" />
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="GroupBox">
+        <Setter Property="Padding" Value="2"/>
+    </Style>
+    <Style x:Key="Button.DefaultStyle" TargetType="Button">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="8,0,8,0"/>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,134 @@
+﻿<Window x:Class="FileDispatcher.Views.ConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        mc:Ignorable="d"
+        Width="600"
+        MinHeight="692"
+        Height="{Binding MinHeight, RelativeSource={RelativeSource Self}}"
+        Title="FileDispatcher Configuration"
+        d:DataContext="{d:DesignData Source=./DesignData/ConfigWindowViewModel.xaml}" 
+        >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/FileDispatcher;component/Resources/Themes/Styles.xaml" />
+                <ResourceDictionary Source="/FileDispatcher;component/Resources/Themes/DataTemplates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Margin="4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock 
+            Grid.Row="0"
+            Text="Tasks"
+            FontSize="16"
+            FontWeight="DemiBold"
+            Margin="0,0,0,4"
+            />
+        <Grid
+            Grid.Row="1"
+            Margin="0,0,0,4"
+            >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="4"/>
+                <ColumnDefinition MinWidth="200"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid
+                Grid.Column="0"
+                ItemsSource="{Binding Path=Tasks}"
+                SelectedItem="{Binding SelectedTask}"
+                AutoGenerateColumns="False"
+                IsReadOnly="True"
+                HeadersVisibility="Column"
+                ColumnWidth="*" SelectionMode="Single"
+                >
+                <DataGrid.Columns>
+                    <DataGridTextColumn 
+                        Header="Name"
+                        Binding="{Binding Name}"
+                        />
+                    <DataGridTextColumn 
+                        Header="Type"
+                        Binding="{Binding TaskType}"
+                        Width="*"
+                        />
+                </DataGrid.Columns>
+            </DataGrid>
+            <GridSplitter 
+                Grid.Column="1"
+                ResizeDirection="Columns"
+                HorizontalAlignment="Stretch"
+                Margin="1,0,1,0"
+                Background="Gray"
+                >
+            </GridSplitter>
+            <Border 
+                Grid.Column="2" 
+                BorderThickness="1" 
+                BorderBrush="Gray"
+                >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ContentControl 
+                            Grid.Row="0"
+                            Content="{Binding Path=SelectedTask}"
+                            Margin="0,0,0,4"
+                        />
+                    </ScrollViewer>
+                    <DockPanel Grid.Row="1">
+                        <Button
+                            DockPanel.Dock="Left"
+                            Style="{StaticResource Button.DefaultStyle}"
+                            Content="Save"
+                            Margin="4,0,0,4"
+                            Command="{Binding Path=SaveSelectedTaskCommand}"
+                            />
+                        <Button
+                            DockPanel.Dock="Right"
+                            Style="{StaticResource Button.DefaultStyle}"
+                            HorizontalAlignment="Right"
+                            Content="Delete"
+                            Margin="0,0,4,4"
+                            Command="{Binding Path=DeleteSelectedTaskCommand}"
+                            />
+                    </DockPanel>
+                </Grid>
+            </Border>
+        </Grid>
+        <DockPanel 
+            Grid.Row="2"
+            >
+            <ComboBox 
+                ItemsSource="{Binding TaskTypes}"
+                SelectedItem="{Binding CreateTaskType}"
+                Margin="0,0,4,0"
+                Width="100"
+                />
+            <Button 
+                Content="Create new "
+                Command="{Binding CreateTaskCommand}"
+                Style="{StaticResource Button.DefaultStyle}"
+                />
+            <CheckBox
+                DockPanel.Dock="Right"
+                Content="Run when Windows starts"
+                IsChecked="{Binding Path=OpenOnStartup}"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                />
+        </DockPanel>
+    </Grid>
+</Window>
